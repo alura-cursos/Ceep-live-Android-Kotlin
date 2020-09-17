@@ -12,6 +12,8 @@ class NotaDAO {
         notas.add(nota)
     }
 
+    fun buscaNota(posicao: Int): Nota = notas[posicao]
+
     companion object {
         private val notas: MutableList<Nota> = mutableListOf()
     }

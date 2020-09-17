@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.nota_item.view.*
 
 class ListaNotasAdapter(
     private val context: Context,
-    private val notas: List<Nota>
+    private val notas: List<Nota>,
+    val quandoClicaNoItem: (posicao: Int) -> Unit
 ) :
     RecyclerView.Adapter<ListaNotasAdapter.ViewHolder>() {
 
@@ -32,7 +33,13 @@ class ListaNotasAdapter(
 
     override fun getItemCount(): Int = notas.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        init {
+            itemView.setOnClickListener {
+                quandoClicaNoItem(adapterPosition)
+            }
+        }
 
         fun vincula(nota: Nota) {
             itemView.activity_main_titulo.text = nota.titulo
